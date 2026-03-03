@@ -1,0 +1,7 @@
+services:
+  velyx:
+    build: .
+    volumes:
+      - ./examples:/app/examples
+      - ./out:/app/out
+    command: ["--help"]

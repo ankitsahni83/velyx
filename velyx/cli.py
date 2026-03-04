@@ -5,6 +5,8 @@ import os
 from velyx.intent.resolver import resolve_intent
 from velyx.iac.terraform_parser import load_tfplan
 from velyx.iac.posture_extractor import extract_posture
+from velyx.reconcile.infra_reconciler import reconcile_intent_vs_infra
+from velyx.report.render_md import render_summary_md
 
 
 def main():
@@ -47,6 +49,18 @@ def main():
             json.dump(posture, f, indent=2)
 
         print("infra posture generated")
+
+    
+    if args.tfplan:
+        report = reconcile_intent_vs_infra(intent, posture)
+
+        with open(f"{args.outdir}/report.json", "w") as f:
+            json.dump(report, f, indent=2)
+
+        with open(f"{args.outdir}/summary.md", "w") as f:
+            f.write(render_summary_md(report))
+
+        print("report generated")
 
 
 if __name__ == "__main__":

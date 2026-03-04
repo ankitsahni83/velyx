@@ -1,0 +1,24 @@
+{
+    "resource_changes": [
+      {
+        "type": "aws_db_instance",
+        "name": "checkout_db",
+        "change": {
+          "after": {
+            "multi_az": true,
+            "backup_retention_period": 7
+          }
+        }
+      },
+      {
+        "type": "aws_autoscaling_group",
+        "name": "checkout_asg",
+        "change": {
+          "after": {
+            "min_size": 2,
+            "max_size": 10
+          }
+        }
+      }
+    ]
+  }

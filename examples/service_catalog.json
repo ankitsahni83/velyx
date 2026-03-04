@@ -1,0 +1,12 @@
+{
+    "services": [
+      {
+        "service_id": "checkout-api",
+        "tier": "gold",
+        "exposure": "external",
+        "journey": "checkout",
+        "traffic_class": "high",
+        "data_class": "pii"
+      }
+    ]
+  }
